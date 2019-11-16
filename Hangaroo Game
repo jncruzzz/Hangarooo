@@ -1,0 +1,39 @@
+def Hangaroo(secretWord):
+    import string
+    lettersGuessed=[]
+    list(lettersGuessed)
+    mistakes = 0
+    secword = len(secretWord)
+    
+    print("Your mistakes", mistakes)
+    print("-------------------------------------------")
+    print("The word is ",secword,"letters long")
+    print(getGuessedWord(secretWord,lettersGuessed))
+    
+    while isWordGuessed(secretWord,lettersGuessed) == False:
+        guess = input("Pick a Letter: ")
+        lg = guess.lower()
+        if (lg in string.ascii_lowercase) == False:
+            print("Sorry, wrong input. Try again: ")
+            print ('-------------------------------')
+            
+        elif (lg in secretWord) == False:
+           mistakes += 1
+           print("Mistakes: ",mistakes)
+           print ('-------------------------------')
+           lettersGuessed.append(lg)
+           
+        elif (lg in lettersGuessed) == True:
+            print("That letter has already been guessed. Try again: ")
+            
+        else:
+            print("Great guess!")
+            print ('-------------------------------')
+            lettersGuessed.append(lg)
+            
+        print(getGuessedWord(secretWord,lettersGuessed))
+        print("Letters Available ", getAvailableLetters(lettersGuessed))
+            
+    if isWordGuessed(secretWord,lettersGuessed) == True: 
+       print ('-------------------------------')
+       return(print("Congratulations! You guessed the word: ",secretWord))  
